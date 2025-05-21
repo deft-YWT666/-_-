@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>病虫灾害监测</title>
+    <!--清空样式-->
+    <link rel="stylesheet" href="css/base/reset.css">
+   
+    <!--容器样式-->
+    <link rel="stylesheet" href="css/container.css">
+    <!--内容区样式-->
+    <link rel="stylesheet" href="css/content.css">
+    <!--默认样式-->
+    <link rel="stylesheet" href="css/base/default.css">
+    <!--index页-->
+    <link rel="stylesheet" href="./css/index.css">
+    <style>
+        .upload-btn {
+            position: fixed;
+            top: 200px;
+            left: 50px;
+            z-index: 1000;
+            background-color: #89ea8c;
+            color: rgb(8, 3, 79);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .upload-btn:hover {
+            background-color: #45a049;
+        }
+
+        #preview-image {
+            max-width: 80%;
+            max-height: 80vh;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -45%);
+            display: none;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1001; /* 提高 z-index 值，确保图片显示在背景之上 */
+        }
+
+        .error-message {
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            background-color: #ff4444;
+            color: white;
+            padding: 12px;
+            border-radius: 4px;
+            display: none;
+            z-index: 1000;
+        }
+
+        .result-section {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            width: 300px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1002;
+            display: none;
+        }
+
+        .result-section h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .result-item {
+            margin-bottom: 5px;
+        }
+
+        .warning-btn {
+            background-color: #ff4444;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .warning-btn:hover {
+            background-color: #cc0000;
+        }
+
+        .camera-btn {
+            position: fixed;
+            bottom: 200px;
+            left: 50px;
+            z-index: 1000;
+            padding: 20px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .camera-btn.off {
+            background-color: #cccccc;
+            color: white;
+        }
+
+        .camera-btn.on {
+            background-color: #ff4444;
+            color: white;
+        }
+
+        /* 定义淡入动画关键帧 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .upload-btn,
+        .camera-btn {
+            /* 添加淡入动画 */
+            animation: fadeIn 1s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!--header-->
+    <ast-header nav-selected="1"></ast-header>
+    <script src="js/ast-header.js"></script>
+
+    <!-- 上传图片输入框 -->
+    <input type="file" id="upload-input" accept="image/*" style="display: none;">
+    <label for="upload-input" class="upload-btn">上传图片</label>
+
+    <!-- 图片预览区域 -->
+    <img id="preview-image" src="" alt="预览图片" style="display: none;">
+    <!-- 识别结果区域 -->
+    <div id="result-section" class="result-section">
+        <h2>识别结果:</h2>
+        <div id="pest-results">
+            <p class="result-item">XX虫害: 89%</p>
+            <p class="result-item">XX虫害: 30%</p>
+        </div>
+        <button class="warning-btn">预警处理→</button>
+    </div>
+
+    <script>
+        const uploadInput = document.getElementById('upload-input');
+        const previewImage = document.getElementById('preview-image');
+        const errorMessage = document.getElementById('error-message');
+        const resultSection = document.getElementById('result-section');
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 3000);
+        }
+
+        uploadInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                if (!file.type.startsWith('image/')) {
+                    showError('请选择有效的图片文件');
+                    return;
+                }
+
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    previewImage.style.display = 'block';
+                    // 显示识别结果区域
+                    resultSection.style.display = 'block';
+                };
+
+                reader.onerror = function() {
+                    showError('文件读取失败，请重试');
+                };
+
+                previewImage.onerror = function() {
+                    showError('图片加载失败，请检查文件');
+                    previewImage.style.display = 'none';
+                    resultSection.style.display = 'none';
+                };
+
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+
+    <!--main-->
+    <main>
+            
+                
+            
+        
+           
+    </main>
+
+    
+</body>
+
+</html>
+
+    <!-- 摄像接入按钮 -->
+    <button id="camera-btn" class="camera-btn off">摄像接入 - 关</button>
+
+    <script>
+        const cameraBtn = document.getElementById('camera-btn');
+        let isCameraOn = false;
+
+        cameraBtn.addEventListener('click', function() {
+            isCameraOn = !isCameraOn;
+            if (isCameraOn) {
+                cameraBtn.classList.remove('off');
+                cameraBtn.classList.add('on');
+                cameraBtn.textContent = '摄像接入 - 开';
+            } else {
+                cameraBtn.classList.remove('on');
+                cameraBtn.classList.add('off');
+                cameraBtn.textContent = '摄像接入 - 关';
+            }
+        });
+    </script>

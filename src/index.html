@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>智农药源·神农眼</title>
+    <!--清空样式-->
+    <link rel="stylesheet" href="./css/base/reset.css">
+    <!--默认样式-->
+    <link rel="stylesheet" href="./css/base/default.css">
+    <!--index页-->
+    <link rel="stylesheet" href="./css/index.css">
+    <style>
+        /* 新增轮播图小圈导航样式 */
+        .slider-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ccc;
+            cursor: pointer;
+        }
+
+        .slider-dot.active {
+            background-color: #000;
+        }
+
+        /* 轮播图容器 */
+        .slider-container {
+            position: relative;
+            width: 80%; 
+            height: calc(95% * 12 / 16); 
+            margin: 0 auto;
+            overflow: hidden;
+            padding: 10px; 
+            box-sizing: border-box;
+        }
+
+        /* 轮播图 */
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: fit-content;
+            height: 100%;
+            /* 移除图片间隔 */
+            gap: 0; 
+        }
+
+        /* 轮播图图片 */
+        .slider img {
+            /* 让图片宽度为容器宽度 */
+            width: 100%; 
+            height: 100%;
+            object-fit: contain; /* 保持图片比例并完全显示在容器内 */
+        }
+    </style>
+    <script src="./js/index.js"></script>
+</head>
+
+    <!--header-->
+    <ast-header nav-selected="0"></ast-header>
+    <script src="./js/ast-header.js"></script>
+
+    <!--main-->
+    <main>
+        <div class="slider-container">
+            <div class="slider">
+                <!-- 图片 1，可替换为实际图片路径 -->
+                <img src="./img/pictures/轮播图_top.jpg" alt="Image 1">
+                <!-- 图片 2，可替换为实际图片路径 -->
+                <img src="./img/pictures/轮播图2.png" alt="Image 2">
+                <!-- 图片 3，可替换为实际图片路径 -->
+                <img src="./img/pictures/轮播图3.png" alt="Image 3">
+            </div>
+            <!-- 新增轮播图小圈导航 -->
+            <div class="slider-dots">
+                <div class="slider-dot active"></div>
+                <div class="slider-dot"></div>
+                <div class="slider-dot"></div>
+            </div>
+            <div class="slider-nav">
+                <button class="prev-btn">←</button>
+                <button class="next-btn">→</button>
+            </div>
+        </div>
+        <!-- 添加 4 个跳转按钮 -->
+        <div class="jump-buttons">
+            <button class="jump-btn" data-url="nav1-page1.html">病虫灾害监测</button>
+            <button class="jump-btn" data-url="nav2-page1.html">土壤环境参数展示与种植提醒</button>
+            <button class="jump-btn" data-url="nav3-page1.html">栽培知识论坛与知识查询</button>
+            <button class="jump-btn" data-url="nav4-page1.html">专家咨询</button>
+        </div>
+    </main>
+    <script>
+        const slider = document.querySelector('.slider');
+        const dots = document.querySelectorAll('.slider-dot');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        const images = document.querySelectorAll('.slider img');
+        let currentIndex = 0;
+
+        // 计算图片宽度为容器宽度
+        const imageWidth = document.querySelector('.slider-container').offsetWidth; 
+
+        function updateSlider() {
+            slider.style.transform = `translateX(-${currentIndex * imageWidth}px)`;
+            updateDots();
+        }
+
+        function updateDots() {
+            dots.forEach((dot, index) => {
+                if (index === currentIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateSlider();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateSlider();
+        });
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentIndex = index;
+                updateSlider();
+            });
+        });
+
+        // 初始化轮播图
+        updateSlider();
+
+        // 获取所有跳转按钮
+        const jumpButtons = document.querySelectorAll('.jump-btn');
+
+        // 为每个跳转按钮添加点击事件监听器
+        jumpButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // 获取按钮的 data-url 属性值
+                const url = button.dataset.url;
+                if (url) {
+                    // 跳转到指定页面
+                    window.location.href = url;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

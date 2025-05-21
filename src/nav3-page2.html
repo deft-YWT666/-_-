@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>栽培知识论坛与知识查询</title>
+    <!--清空样式-->
+    <link rel="stylesheet" href="css/base/reset.css">
+    <!--默认样式-->
+    <link rel="stylesheet" href="css/base/default.css">
+    <!--容器样式-->
+    <link rel="stylesheet" href="css/container.css">
+    <!--内容区样式-->
+    <link rel="stylesheet" href="css/content.css">
+    <!--index页-->
+    <link rel="stylesheet" href="./css/index.css">
+    <style>
+        /* 按钮容器样式 */
+        .button-container {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 30px; /* 按钮间的间距 */
+            padding: 10px;
+            background-color: #f0f0f0; /* 容器背景色 */
+            border-radius: 0 8px 8px 0; /* 右侧圆角 */
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* 右侧阴影 */
+        }
+
+        /* 按钮样式 */
+        .nav-button {
+            padding: 20px 15px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50; /* 按钮背景色 */
+            color: rgb(7, 22, 75);
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 1.5em; /* 增大字体大小 */
+            font-family: "Comic Sans MS", cursive, sans-serif; /* 使用可爱风格字体 */
+        }
+
+        .nav-button:hover {
+            background-color: #45a049; /* 鼠标悬停时按钮背景色 */
+        }
+
+        #view_container {
+            display: flex;
+            justify-content: space-between; /* 使图片两端对齐 */
+            gap: 20px; /* 图片间的间距 */
+            width: 100%; /* 容器宽度为父元素 100% */
+            margin: 20px 0; /* 上下外边距 */
+        }
+
+        #view_container img {
+            max-width: calc(50% - 10px); /* 每张图片最大宽度为容器的 50% 减去间距的一半 */
+            max-height: 100%; /* 最大高度不超过容器 */
+            object-fit: contain; /* 保持图片比例，完整显示在容器内 */
+            height: auto; /* 保持图片比例 */
+            border-radius: 10px; /* 添加圆角 */
+            /* 添加过渡效果，使 transform 和 box-shadow 变化更平滑 */
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            /* 初始阴影 */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #view_container img:hover {
+            /* 鼠标悬停时向上移动 8px */
+            transform: translateY(-8px);
+            /* 悬停时增强阴影效果 */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        /* 让 #content 里的 h1 元素居中 */
+        #content h1 {
+            text-align: center;
+        }
+       
+            /* 假设 main 元素设置了背景图 */
+            main {
+                width: 100%;
+                height: auto;
+                min-height: 100%;
+                /* 让背景图覆盖整个容器 */
+                background-size: cover; 
+                background-position: center; /* 背景图居中显示 */
+                overflow: hidden;
+            }
+        </style>
+    
+</head>
+<body>
+    <!--header-->
+    <ast-header nav-selected="3"></ast-header>
+    <script src="js/ast-header.js"></script>
+
+    <!--main-->
+    <main >
+        <div id="content_container">
+            <!--标题-->
+            <div id="content_title">人参的种植方式</div>
+          
+            
+                <div id="view_container">
+                    <img src="./img/人参.png" alt="Image 1">
+                    <img src="./img/大棚.jpg" alt="Image 2">
+                </div>
+                <h1>文字部分</h1>
+                <p>人参是一种常见的作物，具有多种种植方式。以下是一些常见的人参种植方式：</p>
+                <ul>
+                    <li>种植园：人参可以种植在园场上，通过种植园的方式可以获得丰富的人参资源。园场上的人参通常具有较高的产量和品质，适合作为作物的主要来源。
+                    </li>
+                    <li>大棚：人参可以种植在大棚中，通过大棚的方式可以获得更加稳定和安全的人参资源。大棚中的人参通常具有较高的产量和品质，适合作为作物的主要来源。  
+                    </li>   
+                    <li>大棚：人参可以种植在大棚中，通过大棚的方式可以获得更加稳定和安全的人参资源。大棚中的人参通常具有较高的产量和品质，适合作为作物的主要来源。
+                    </li>
+                    <li>种植园：人参可以种植在园场上，通过种植园的方式可以获得丰富的人参资源。园场上的人参通常具有较高的产量和品质，适合作为作物的主要来源。
+                    </li>
+                    <li>大棚：人参可以种植在大棚中，通过大棚的方式可以获得更加稳定和安全的人参资源。大棚中的人参通常具有较高的产量和品质，适合作为作物的主要来源。  
+                    </li>   
+                    <li>大棚：人参可以种植在大棚中，通过大棚的方式可以获得更加稳定和安全的人参资源。大棚中的人参通常具有较高的产量和品质，适合作为作物的主要来源。
+                    </li>
+                    <li>种植园：人参可以种植在园场上，通过种植园的方式可以获得丰富的人参资源。园场上的人参通常具有较高的产量和品质，适合作为作物的主要来源。
+                    </li>
+                    <li>大棚：人参可以种植在大棚中，通过大棚的方式可以获得更加稳定和安全的人参资源。大棚中的人参通常具有较高的产量和品质，适合作为作物的主要来源。  
+                    </li>   
+                    <li>大棚：人参可以种植在大棚中，通过大棚的方式可以获得更加稳定和安全的人参资源。大棚中的人参通常具有较高的产量和品质，适合作为作物的主要来源。
+                    </li>
+                </ul>
+           
+           
+    
+        </div>
+        <!-- 按钮容器 -->
+        <div class="button-container">
+            <button class="nav-button">区域选取方法</button>
+            <button class="nav-button">药田管理</button>
+            <button class="nav-button">嫁接</button>
+            <button class="nav-button">引种</button>
+        </div>
+    </main>
+</body>
+</html>

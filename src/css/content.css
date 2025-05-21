@@ -1,0 +1,56 @@
+/* content_title */
+#content_title {
+    width: 80%; /* 可根据需求调整宽度 */
+    height: 200px;
+    line-height: 100px;
+    font-size: 2.8em;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 10px;
+    transform: translateX(25px);
+    /* 减小底部外边距 */
+    margin: 0 auto 10px; 
+    /* 添加渐变背景 */
+    background: black;
+    -webkit-background-clip: text; /* 让文字填充渐变背景 */
+    background-clip: text;
+    color: transparent; /* 文字颜色设为透明，显示渐变背景 */
+}
+
+/* content */
+#content {
+    width: 80%; /* 可根据需求调整宽度 */
+    height: auto;
+    /* 减小顶部外边距 */
+    margin: -50px auto; 
+    background: linear-gradient(135deg, #e8ece7 0%, #eeefe7 100%);
+    padding: 20px; /* 添加内边距，让内容与背景边缘有间距 */
+    border-radius: 10px; /* 添加圆角 */
+}
+
+#content h1 {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin: 20px 0;
+    letter-spacing: 5px;
+}
+#content h2 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 10px 0;
+}
+#content p {
+    font-size: 1.07em;
+    text-indent: 30px;
+    line-height: 1.8;
+    letter-spacing: 1px;
+}
+#content sup {
+    vertical-align: super;
+    font-size: 0.5em;
+}
+#content li {
+    list-style: decimal;
+    font-size: 1.07em;
+    margin: 20px 0 20px 30px;
+}

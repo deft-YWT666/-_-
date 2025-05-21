@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>土壤环境参数展示与种植提醒</title>
+    <!--清空样式-->
+    <link rel="stylesheet" href="css/base/reset.css">
+    <!--默认样式-->
+    <link rel="stylesheet" href="css/base/default.css">
+    <!--容器样式-->
+    <link rel="stylesheet" href="css/container.css">
+    <!--内容区样式-->
+    <link rel="stylesheet" href="css/content.css">
+    <!--index页-->
+    <link rel="stylesheet" href="./css/index.css">
+    <style>
+        /* 定义背景图容器 */
+        main {
+            position: relative;
+            width: 100vw;
+            height: 120vh;
+        }
+
+        /* 新增显示区域样式 */
+        .info-display {
+            position: absolute;
+            top: 20px; /* 距离顶部 20px */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.5); /* 半透明白色背景 */
+            padding: 15px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+            /* 修改字体大小和字体样式 */
+            font-size: 30px; 
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            z-index: 1; /* 确保显示在图片上方 */
+        }
+
+        /* 图片网格容器样式 */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 50px; /* 图片间距 */
+            width: 90%; /* 网格容器宽度 */
+            height: 90%; /* 网格容器高度 */
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* 图片样式 */
+        .image-grid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 保持图片比例并覆盖容器 */
+            opacity: 0; /* 初始透明 */
+            animation: fadeIn 1s ease-out forwards;
+            transition: transform 0.3s ease; /* 添加过渡效果 */
+        }
+
+        /* 定义淡入动画 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* 为每张图片设置不同的动画延迟 */
+        .image-grid img:nth-child(1) { animation-delay: 0.2s; }
+        .image-grid img:nth-child(2) { animation-delay: 0.4s; }
+        .image-grid img:nth-child(3) { animation-delay: 0.6s; }
+        .image-grid img:nth-child(4) { animation-delay: 0.8s; }
+        .image-grid img:nth-child(5) { animation-delay: 1s; }
+        .image-grid img:nth-child(6) { animation-delay: 1.2s; }
+
+        /* 鼠标悬停时图片浮动效果 */
+        .image-grid img:hover {
+            transform: translateY(-10px); /* 向上移动 10px */
+        }
+    </style>
+</head>
+<body>
+    <!--header-->
+    <ast-header nav-selected="2"></ast-header>
+    <script src="js/ast-header.js"></script>
+
+    <!--main-->
+    <main>
+        <!-- 新增显示区域 -->
+         
+        <div class="info-display">
+         土壤参数:温度: 22.1℃ , 湿度: 25.5%RH , 噪声: 35dB , 风速: 1.5m/s , PH: 4.5~5.5
+        </div>
+        <!-- 图片网格容器 -->
+        <div class="image-grid">
+            <img src="./img/土壤1.jpg" alt="Image 1">
+            <img src="./img/土壤2.jpg" alt="Image 2">
+            <img src="./img/土壤3.jpg" alt="Image 3">
+            <img src="./img/土壤4.jpg" alt="Image 4">
+            <img src="./img/土壤5.jpg" alt="Image 5">
+            <img src="./img/土壤6.jpg" alt="Image 6">
+        </div>
+    </main>
+</body>
+</html>

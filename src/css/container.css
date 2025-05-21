@@ -1,0 +1,33 @@
+/* main */
+main {
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    background-size: contain;
+    overflow: hidden;
+}
+#view_container {
+    width: 80%;
+    height: auto;
+    margin: 60px auto;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#content_container {
+    width: 750px;
+    height: auto;
+    box-sizing: border-box;
+    margin-left: 25px;
+    /* 使用 rgba() 函数设置白色半透明背景，最后一个参数 0.8 代表透明度，范围 0 - 1 */
+    background-color: rgba(255, 255, 255, 0.3); 
+    padding: 30px 50px 50px 50px;
+    border-radius: 15px;
+}
+
+/* 修改 #content_container 内所有文本样式 */
+#content_container * {
+    font-size: 1.2em; /* 增大字体大小 */
+    font-family: "Comic Sans MS", cursive, sans-serif; /* 使用可爱风格字体 */
+}
+

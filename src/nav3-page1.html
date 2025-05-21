@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>栽培知识论坛与知识查询</title>
+    <!--清空样式-->
+    <link rel="stylesheet" href="css/base/reset.css">
+    <!--默认样式-->
+    <link rel="stylesheet" href="css/base/default.css">
+    <!--容器样式-->
+    <link rel="stylesheet" href="css/container.css">
+    <!--内容区样式-->
+    <link rel="stylesheet" href="css/content.css">
+    <!--index页-->
+    <link rel="stylesheet" href="./css/index.css">
+    <style>
+        /* 按钮容器样式 */
+        .button-container {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 30px; /* 按钮间的间距 */
+            padding: 10px;
+            background-color: #f0f0f0; /* 容器背景色 */
+            border-radius: 0 8px 8px 0; /* 右侧圆角 */
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* 右侧阴影 */
+        }
+
+        /* 按钮样式 */
+        .nav-button {
+            padding: 20px 15px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50; /* 按钮背景色 */
+            color: rgb(7, 22, 75);
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 1.5em; /* 增大字体大小 */
+            font-family: "Comic Sans MS", cursive, sans-serif; /* 使用可爱风格字体 */
+        }
+
+        .nav-button:hover {
+            background-color: #45a049; /* 鼠标悬停时按钮背景色 */
+        }
+
+        #view_container {
+            width: 80%;
+            height: auto;
+            margin: 60px auto;
+            display: flex;
+            justify-content: center; /* 水平居中图片 */
+            align-items: center; /* 垂直居中图片（如果容器有高度） */
+        }
+
+        #view_container img {
+            max-width: 100%; /* 最大宽度不超过容器 */
+            max-height: 100%; /* 最大高度不超过容器 */
+            object-fit: contain; /* 保持图片比例，完整显示在容器内 */
+        }
+
+        /* 让 #content 里的 h1 元素居中 */
+        #content h1 {
+            text-align: center;
+        }
+
+        #content {
+            width: 80%;
+            height: auto;
+            margin: 10px auto;
+            background: linear-gradient(135deg, #e8ece7 0%, #eeefe7 100%);
+            padding: 20px;
+            border-radius: 10px;
+            /* 添加过渡效果，使 transform 和 box-shadow 变化更平滑 */
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            /* 初始阴影 */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #content:hover {
+            /* 鼠标悬停时向上移动 8px */
+            transform: translateY(-8px);
+            /* 悬停时增强阴影效果 */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <!--header-->
+    <ast-header nav-selected="3"></ast-header>
+    <script src="js/ast-header.js"></script>
+
+    <!--main-->
+    <main >
+        <div id="content_container">
+            <!--标题-->
+            <div id="content_title">论坛</div>
+            <!--内容区，添加点击事件 -->
+            <div id="content" onclick="redirectToPage2()">
+                    <h1>人参的种植方式(点击阅读)</h1>
+                    <div id="view_container">
+                        <img src="./img/土壤1.jpg" alt="Image 1">
+                    </div>
+            </div>
+            <script src="js/content.js"></script>
+            <script src="js/sidebar.js"></script>
+            <!-- 新增 JavaScript 代码 -->
+            <script>
+                function redirectToPage2() {
+                    // 使用 window.location.href 实现页面跳转
+                    window.location.href = 'nav3-page2.html';
+                }
+            </script>
+        </div>
+        <!-- 按钮容器 -->
+        <div class="button-container">
+            <button class="nav-button">区域选取方法</button>
+            <button class="nav-button">药田管理</button>
+            <button class="nav-button">嫁接</button>
+            <button class="nav-button">引种</button>
+        </div>
+    </main>
+</body>
+</html>

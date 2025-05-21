@@ -1,0 +1,163 @@
+/* main */
+main {
+    width: 100vw;
+    height: 100vh;
+    /* 使用深邃蓝绿渐变背景 */
+    background-image: url('../img/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* 减小顶部内边距，让轮播图容器靠近导航栏 */
+    padding-top: 20px; 
+    align-items: center;
+}
+
+#start_btn {
+    /* 原有按钮样式，保持不变 */
+    width: 150px;
+    height: 50px;
+    position: absolute;
+    left: 44%;
+    bottom: 34%;
+    border-radius: 15px;
+    font-size: 1.2em;
+    color: rgb(241, 233, 233);
+    border: 0;
+    background-image: var(--gradient-color);
+    transition: all 0.2s;
+}
+#start_btn:hover {
+    box-shadow: 0 0 20px 4px var(--start-button-hover-color);
+}
+
+
+/* 轮播图容器 */
+.slider-container {
+    position: relative;
+    /* 容器宽度比图片稍宽，可按需调整 */
+    width: 80%; 
+    /* 容器高度比图片稍高，可按需调整 */
+    height: calc(95% * 12 / 16); 
+    margin: 0 auto;
+    overflow: hidden;
+    /* 添加内边距，使容器比图片略大 */
+    padding: 10px; 
+    box-sizing: border-box;
+}
+
+/* 轮播图 */
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: fit-content;
+    height: 100%;
+    /* 给图片之间添加间隔 */
+    gap: 250px; 
+}
+
+/* 轮播图图片 */
+.slider img {
+    /* 图片宽度减去间隔和内边距的影响 */
+    width: calc(100% - 500px); 
+    /* 让图片高度占满容器，同时保持宽高比，可能会有裁剪 */
+    height: 100%; 
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+/* 导航按钮容器 */
+.slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 导航按钮 */
+.prev-btn,
+.next-btn {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.prev-btn:hover,
+.next-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+
+
+
+
+/* 定义按钮出现动画关键帧 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* 初始位置在下方 20px */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* 最终回到正常位置 */
+    }
+}
+
+/* 跳转按钮容器 */
+.jump-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 150px; /* 按钮间的间距 */
+    margin-top: 50px; /* 按钮与轮播图的间距 */
+}
+
+/* 跳转按钮 */
+.jump-btn {
+    padding: 20px 20px;
+    border: none;
+    border-radius: 50px; /* 圆角效果 */
+    background-color: #f3efad; /* 按钮背景色 */
+    color: rgb(4, 80, 52); /* 按钮文字颜色 */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1.2em;
+    /* 添加动画效果 */
+    animation: fadeInUp 0.8s ease-out forwards;
+    /* 让每个按钮有不同的延迟时间，形成逐个出现的效果 */
+    animation-delay: calc(0.1s * var(--index));
+}
+
+/* 为每个按钮设置 --index 变量 */
+.jump-buttons .jump-btn:nth-child(1) {
+    --index: 1;
+}
+
+.jump-buttons .jump-btn:nth-child(2) {
+    --index: 2;
+}
+
+.jump-buttons .jump-btn:nth-child(3) {
+    --index: 3;
+}
+
+.jump-buttons .jump-btn:nth-child(4) {
+    --index: 4;
+}
+
+.jump-btn:hover {
+    background-color: #357abD; /* 鼠标悬停时的按钮背景色 */
+}
+
+
+
+
+
+
